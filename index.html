@@ -3,8 +3,6 @@
 <head>
   <title>Котики</title>
   <style>
-
-
     body {
       margin: 0;
       padding: 0;
@@ -157,6 +155,48 @@
       color: #ff9900;
       font-weight: bold;
       text-decoration: none;
+    }
+
+    /* Media Queries */
+    @media only screen and (max-width: 768px) { /* Стиль для планшетов */
+      .task-container {
+        flex-direction: column; /* Задания в столбик */
+        width: 100%; /* Задания занимают всю ширину */
+      }
+
+      .task {
+        width: 100%; /* Задания занимают всю ширину */
+      }
+
+      .stats {
+        flex-direction: column; /* Статистика в столбик */
+      }
+
+      .stat {
+        margin-bottom: 10px; /* Отступ между элементами статистики */
+      }
+    }
+
+    @media only screen and (max-width: 480px) { /* Стиль для смартфонов */
+      .header .button {
+        font-size: 12px; /* Уменьшение шрифта */
+      }
+
+      .cats-count {
+        font-size: 24px; /* Уменьшение шрифта */
+      }
+
+      .task {
+        padding: 10px; /* Уменьшение отступов */
+      }
+
+      .stat .value {
+        font-size: 16px; /* Уменьшение шрифта */
+      }
+
+      .stat-icon {
+        width: 15px; /* Уменьшение размера изображения */
+      }
     }
   </style>
 </head>
