@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
+        -webkit-touch-callout: none; /* Для устройств iOS */
+       -webkit-user-select: none; /* Для устройств iOS */
+       user-select: none; /* Для других устройств */
+       touch-action: manipulation; /* Запрещает масштабирование */
       margin: 0;
       padding: 0;
       font-family: sans-serif;
@@ -22,14 +26,17 @@
     }
 
     .header {
-      background-color: #0c7adb;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
+ background: linear-gradient(to right, #0c7adb, #1992ff); /* Добавляем градиент */
+ color: white;
+ padding: 12px 20px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+ border-bottom-left-radius: 0px; /* Закругление слева снизу */
+ border-bottom-right-radius: 0px; /* Закругление справа снизу */
+}
+
 
     .header .logo {
       display: flex;
@@ -51,6 +58,7 @@
       font-weight: bold;
       cursor: pointer;
     }
+
 
     .content {
       padding: 20px;
@@ -259,7 +267,7 @@
             <div class="task">
               <div class="task-title">Отсосать ЯЙЦА </div>
               <div class="task-count">50 $BAMBUK</div>
-              <a href="https://t.me/pinigang" class="button_1722621636632" target="_blank">
+              <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
                 <span class="tasks1" id="boostPingviChannel" style="color: rgb(68, 224, 255); cursor: pointer;">Boost to channel</span>
               </a>
             </div>
@@ -279,8 +287,8 @@
             </div>
             <div class="task task-hidden">
               <div class="task-title">FUN😊Улыбка =</div>
-              <div class="task-count">100 $</div>
-              <a href="https://t.me/" id="otherTask" class="button_1722621636632">
+              <div class="task-count">100 $PINGVI</div>
+              <a href="https://t.me/pingvigang" id="otherTask" class="button_1722621636632">
                 <span style="color: rgb(68, 224, 255); cursor: pointer;">Нажми Сюда </span>
               </a>
             </div>
@@ -317,22 +325,29 @@
 
   <div class="taskbar container">
     <button class="btn" data-page="home">
-      <img src="https://avatars.mds.yandex.net/i?id=20f8dc013bc48c4ba4be5cacc6f4e4a9ec3ed436-10349583-images-thumbs&n=13" alt="Home">
-      <span class="label">HOME</span> 
+      <img src="https://img.icons8.com/?size=100&id=dS5lJMOqmBwL&format=png&color=000000" alt="Home">
+      <span class="label" style="font-family: 'Junegull', sans-serif;">HOME</span> 
     </button>
     <button class="btn" onclick="goToGame()">
       <img src="https://cdn0.iconfinder.com/data/icons/shopping-and-commerce-5-1/128/241-1024.png" alt="Leader">
-      <span class="label">GAME</span> 
+      <span class="label" style="font-family: 'Junegull', sans-serif;">GAME</span> 
     </button>
     <button class="btn" data-page="leader">
-      <img src="https://avatars.mds.yandex.net/i?id=a29e4b4b720a456e1114a528995c450f93ebee8b-4145917-images-thumbs&n=13" alt="Wallet">
-      <span class="label">LEADER</span> 
+      <img src="https://img.icons8.com/?size=100&id=u45Y3tfD2u4y&format=png&color=000000" alt="Wallet">
+      <span class="label" style="font-family: 'Junegull', sans-serif;">LEADER</span> 
     </button>
     <button class="btn" data-page="glite"> 
-      <img src="https://avatars.mds.yandex.net/i?id=b70fff0307e32e18f88902f609bc7469_l-5296622-images-thumbs&n=13" alt="Settings"> 
-      <span class="label">GLITER</span> 
+      <img src="https://img.icons8.com/?size=100&id=Dkks1lo1Lyf0&format=png&color=000000" alt="Settings"> 
+      <span class="label" style="font-family: 'Junegull', sans-serif;">GLITER</span> 
     </button>
-  </div>
+  </div> 
+
+  <style>
+    @font-face {
+      font-family: 'Junegull';
+      src: url('Junegull.ttf') format('truetype'); /* Замените 'Junegull.ttf' на имя вашего файла шрифта */
+    }
+  </style>
 
 
 
@@ -386,3 +401,4 @@
   </script>
 </body>
 </html>
+
