@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Falling B's and Pandalogos</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #f0f0f0;
+      font-family: 'Junegull', sans-serif;
+      background-image: none; 
+    }
+
+    @font-face {
+      font-family: 'Junegull';
+      src: url('junegull.ttf') format('truetype');
+    }
+
+    .b, .pandalogo {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      opacity: 0;
+      transition: opacity 0.5s ease, top 3s ease;
+      top: -100px;
+      cursor: pointer;
+    }
+
+    .b {
+      background-image: url('b.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .pandalogo {
+      background-image: url('qaw.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .b.visible, .pandalogo.visible {
+      opacity: 1;
+      top: 100%;
+    }
+
+    /* Анимация "растворения" */
+    .b.disappear {
+      opacity: 0;
+      transition: opacity 0.5s ease, width 0.5s ease, height 0.5s ease;
+      width: 0px;
+      height: 0px;
+    }
+
+    .counter {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+    }
+
+    /* Стили для кнопки "Назад" */
+    .back-button {
+      position: fixed;
+      bottom: 10px; /* Изменено: bottom вместо top */
+      left: 10px;
+      z-index: 100;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-button img {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="counter">Счетчик: 0</div>
+
+<div class="back-button">
+  <img src="b.png" alt="Назад"> 
+</div>
+
+<link rel="stylesheet" href="junegull.css">
+
+<script>
+  const container = document.body;
+  const bImage = 'b.png';
+  const pandalogoImage = 'pandalogo.png';
+  let counter = 0;
+  const counterElement = document.querySelector('.counter');
+
+  function createB() {
+    const b = document.createElement('div');
+    b.classList.add('b');
+    b.style.left = Math.random() * 100 + '%'; 
+    container.appendChild(b);
+
+    setTimeout(() => {
+      b.classList.add('visible');
+    }, 100);
+
+    setTimeout(() => {
+      container.removeChild(b);
+    }, 5000);
+
+    b.addEventListener('click', () => {
+      counter++;
+      counterElement.textContent = 'Счетчик: ' + counter; 
+
+      // Добавляем класс "disappear" для анимации
+      b.classList.add('disappear');
+
+      // Создаем новый Audio-элемент для воспроизведения звука
+      const audio = new Audio('hrum.mp3'); 
+      audio.play(); 
+
+      setTimeout(() => {
+        container.removeChild(b); 
+      }, 500); 
+    });
+  }
+
+  function createPandalogo() {
+    const pandalogo = document.createElement('div');
+    pandalogo.classList.add('pandalogo');
+    pandalogo.style.left = Math.random() * 100 + '%'; 
+    container.appendChild(pandalogo);
+
+    setTimeout(() => {
+      pandalogo.classList.add('visible');
+    }, 100);
+
+    setTimeout(() => {
+      container.removeChild(pandalogo);
+    }, 5000);
+
+    pandalogo.addEventListener('click', () => {
+      pandalogo.classList.add('disappear');
+      setTimeout(() => {
+        container.removeChild(pandalogo);
+      }, 500);
+    });
+  }
+
+  setInterval(createB, 500);
+  setInterval(createPandalogo, 5000);
+
+  // Обработчик клика на кнопку "Назад"
+  const backButton = document.querySelector('.back-button');
+  backButton.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+</script>
+
+</body>
+</html>
+
