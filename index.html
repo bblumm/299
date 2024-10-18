@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Котики</title>
+  <title>ПАНДЫ</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-   
+    @font-face {
+      font-family: 'modal-medium';
+      src: url('modal-medium.otf') format('opentype'); 
+    }
+
     body {
       -webkit-touch-callout: none; /* Для устройств iOS */
       -webkit-user-select: none; /* Для устройств iOS */
@@ -14,8 +18,8 @@
       touch-action: manipulation; /* Запрещает масштабирование */
       margin: 0;
       padding: 0;
-      font-family: 'modal-medium', sans-serif; /* Используем шрифт 'modal-medium' */
-      background-color: #f9f9f9;
+      font-family: 'modal-medium', sans-serif; 
+      background-color: #ffffff;
       color: #333;
       display: flex;
       flex-direction: column;
@@ -26,17 +30,16 @@
     }
 
     .header {
- background: linear-gradient(to right, #0c7adb, #1992ff); /* Добавляем градиент */
- color: white;
- padding: 12px 20px;
- display: flex;
- justify-content: space-between;
- align-items: center;
- width: 100%;
- border-bottom-left-radius: 0px; /* Закругление слева снизу */
- border-bottom-right-radius: 0px; /* Закругление справа снизу */
-}
-
+      background: linear-gradient(to right, #0c7adb, #1992ff); 
+      color: white;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-bottom-left-radius: 0px; 
+      border-bottom-right-radius: 0px; 
+    }
 
     .header .logo {
       display: flex;
@@ -59,15 +62,15 @@
       cursor: pointer;
     }
 
-
     .content {
       padding: 20px;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* margin-top: 60px; */ /* Убираем отступ от панели задач */
-      margin-bottom: 60px; /* Отступ от панели задач */
+      z-index: 99;
+     
+      position: relative; 
     }
 
     .cat-logo {
@@ -87,7 +90,7 @@
       display: flex;
       justify-content: space-around;
       margin-bottom: 30px;
-      align-items: center; /* Выравнивание по вертикали */
+      align-items: center; 
     }
 
     .stat {
@@ -100,42 +103,42 @@
     }
 
     .stat-icon {
-      width: 20px; /* Размер изображения */
-      height: auto;
-      margin-right: 5px;
-    }
+       width: 50px; 
+       height: auto;
+       margin-right: 5px;
+     }
+     
+
 
     .tasks {
-      /* background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+      
       width: 100%;
     }
 
     .task-container {
-      display: flex;
-      flex-wrap: wrap; /* Обтекание задач по горизонтали */
-      justify-content: flex-start; /* Выравнивание по левому краю */
-      width: 100%;
-      padding: 0 20px;
-    }
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: flex-start;  
+    width: 100%;
+    padding: 0 20px;
+}
+
 
     .task {
       margin: 10px;
-      width: 48%; /* Ширина задач для горизонтального расположения */
-      min-width: 150px; /* Минимальная ширина для маленьких экранов */
-      border: 1px solid #ccc;
+      width: 48%;
+      min-width: 150px;
+      border: 1px solid #e4e4e7;
       border-radius: 10px;
-      padding: 15px;
+      padding: 8px;
       text-align: left;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      position: relative; /* Добавляем относительное позиционирование для .task */
-      background: linear-gradient(to right, #007fff, #66b3ff); /* Градиент */
-      font-family: 'MADE Waffle Soft', sans-serif; /* MADE Waffle Soft шрифт */
+      position: relative;
+      background: linear-gradient(to right, #ffffff, #ffffff);
+      font-family: 'modal-medium', sans-serif; 
     }
 
     .control-button a {
@@ -143,14 +146,15 @@
       color: inherit;
     }
 
-    .task-title, .task-count {
-      color: white;
+    .task-title,
+    .task-count {
+      color: rgb(0, 0, 0);
     }
 
-    /* Медиазапросы для регулировки ширины задач на разных размерах экрана */
+   
     @media (max-width: 768px) {
       .task {
-        width: 100%; /* Ширина задач для горизонтального расположения на маленьких экранах */
+        width: 100%; 
       }
     }
 
@@ -166,12 +170,12 @@
     }
 
     .task-hidden {
-      display: none; /* Скрываем задачу по умолчанию */
+      display: none;
     }
 
-    /* ... (ваш существующий CSS код) ... */
+  
 
-    /* Стили для панели задач */
+ 
     .taskbar {
       background-color: #fff; /* Белый фон */
       color: #212529; /* Темный цвет текста */
@@ -209,18 +213,28 @@
       font-family: 'Junegull', sans-serif; /* Шрифт Junegull */
     }
 
-    /* Стили для страниц */
-    .page-home, .page-game, .page-leader, .page-glite { /* Классы для страниц */
-      display: none; /* Скрываем страницы по умолчанию */
+    
+    .page-home,
+    .page-game,
+    .page-leader,
+    .page-glite {
+    
+      display: none;
+     
     }
 
-    .page-home.active, .page-game.active, .page-leader.active, .page-glite.active {
-      display: block; /* Показываем активную страницу */
+    .page-home.active,
+    .page-game.active,
+    .page-leader.active,
+    .page-glite.active {
+      display: block;
+      
     }
   </style>
 </head>
+
 <body>
-  
+
   <header class="header">
     <div class="logo">
       <img src="b.png" alt="Логотип">
@@ -230,7 +244,8 @@
   </header>
 
   <script>
-    document.querySelector('.button').addEventListener('click', function() {
+    document.querySelector('.button').addEventListener('click', function()
+    {
       window.open('https://t.me/PandaGangsCommunity', '_blank');
     });
   </script>
@@ -238,135 +253,173 @@
   <main class="content">
     <img src="PANDOG2.png" alt="Логотип кота" class="cat-logo">
     <div class="cats-count" style="text-align: center;">
-      <span id="catsCount">2000</span> Bambuk
+      <span id="catsCount">2000</span> Bamboo
     </div>
     <div class="stats">
       <div class="stat">
-        <img src="b.png" alt="Пандог" class="stat-icon">
+        <img src="nnn.png" alt="Пандог" class="stat-icon">
         <span class="value">+707</span>
         <span>Rewards</span>
       </div>
       <div class="stat">
-        <img src="b.png" alt="Пандог" class="stat-icon">
+        <img src="nnn.png" alt="Пандог" class="stat-icon">
         <span class="value">+1k</span>
         <span>Tasks</span>
       </div>
+      
       <div class="stat">
-        <img src="b.png" alt="Пандог" class="stat-icon">
+        
+        <img src="nnn.png" alt="Пандог" class="stat-icon">
+        
         <span class="value">0</span>
         <span>Invites</span>
       </div>
     </div>
 
-    <!-- Добавьте div для страницы "Home" -->
+
     <div class="page-home active">
-      <h2>Tasks</h2>
-      <div class="row" id="tasksContent">
-        <div class="col-12">
-          <div class="task-container">
-            <div class="task">
-              <div class="task-title">Отсосать ЯЙЦА </div>
-              <div class="task-count">50 $BAMBUK</div>
-              <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
-                <span class="tasks1" id="boostPingviChannel" style="color: rgb(68, 224, 255); cursor: pointer;">Boost to channel</span>
-              </a>
-            </div>
+        
+        <h4>ㅤ Tasks</h4>
+        <div class="row" id="tasksContent">
+          <div class="col-12">
+            <div class="task-container">
+              <div class="task">
+                <div class="task-title">Go To Webcam</div>
+                <div class="task-count">50 $BAMBOO</div>
+                <a href="https://t.me/sosal" class="button_1722621636632" target="_blank">
+                    <a href="#" class="button_1722621636632" target="_blank"></a>
+                        <span class="tasks1" style="color: white; background-color: black; padding: 4px 10px; border-radius: 30px; cursor: pointer;">OPEN</span>
+                </a>
+              </div>      
+          </a>
+
+        
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
             <div class="task">
               <div class="task-title">Subscribe to Channel</div>
-              <div class="task-count">1500 $BAMBUK</div>
-              <a href="https://t.me/PandaGangsCommunity" class="button_1722621636632" target="_blank">
-                <span class="tasks1" id="subscribeChannel" style="color: rgb(68, 224, 255); cursor: pointer;">Subscribe to channel</span>
+              <div class="task-count">1500 $BAMBOO</div>
+              <a href="https://t.me/sosal" class="button_1722621636632" target="_blank">
+                <a href="#" class="button_1722621636632" target="_blank"></a>
+                    <span class="tasks1" style="color: white; background-color: black; padding: 4px 10px; border-radius: 30px; cursor: pointer;">OPEN</span>
+            
               </a>
             </div>
             <div class="task task-hidden">
               <div class="task-title">add it to your nickname "🐼"</div>
-              <div class="task-count">10000 $BAMBUK</div>
+              <div class="task-count">10000 $BAMBOO</div>
               <a href="tg://settings" id="addNickname" class="button_1722621636632">
                 <span style="color: rgb(68, 224, 255);">нажми сюда чтобы выполнить</span>
               </a>
             </div>
             <div class="task task-hidden">
               <div class="task-title">FUN😊Улыбка =</div>
-              <div class="task-count">100 $PINGVI</div>
-              <a href="https://t.me/pingvigang" id="otherTask" class="button_1722621636632">
-                <span style="color: rgb(68, 224, 255); cursor: pointer;">Нажми Сюда </span>
+              <div class="task-count">100 $BAMBOO</div>
+              <a href="https:/" id="otherTask" class="button_1722621636632">
+                <span style="color: black; cursor: pointer;">Нажми Сюда </span>
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div class="show-more">
-        <a href="#" onclick="showMoreTasks()">Show more tasks↓</a>
-      </div>
     </div>
 
-    <!-- Добавьте div для страницы "Game" -->
     <div class="page-game">
-      <!-- Содержимое страницы "Game" -->
       <h2>Game Page</h2>
       <p>Здесь будет контент страницы "Game".</p>
     </div>
 
-    <!-- Добавьте div для страницы "Leader" -->
     <div class="page-leader">
-      <!-- Содержимое страницы "Leader" -->
+
       <h2>Leader Page</h2>
       <p>Здесь будет контент страницы "Leader".</p>
     </div>
 
-    <!-- Добавьте div для страницы "Glite" -->
     <div class="page-glite">
-      <!-- Содержимое страницы "Glite" -->
+
       <h2>Glite Page</h2>
       <p>Здесь будет контент страницы "Glite".</p>
     </div>
+
+    <div class="show-more">
+      <a href="#" onclick="showMoreTasks()">Show more tasks↓</a>
+      <span>WOQQQFFFFFFFFFFF</span>
+      <span>WOQQQFFFFFFFFFFF</span>
+    </div>
+
+    <style>
+      .show-more span {
+        display: block; 
+      }
+    </style>
   </main>
 
 
   <div class="taskbar container">
     <button class="btn" data-page="home">
       <img src="https://img.icons8.com/?size=100&id=dS5lJMOqmBwL&format=png&color=000000" alt="Home">
-      <span class="label" style="font-family: 'Junegull', sans-serif;">HOME</span> 
+      <span class="label" style="font-family: 'Junegull', sans-serif;">HOME</span>
     </button>
     <button class="btn" onclick="goToGame()">
       <img src="https://cdn0.iconfinder.com/data/icons/shopping-and-commerce-5-1/128/241-1024.png" alt="Leader">
-      <span class="label" style="font-family: 'Junegull', sans-serif;">GAME</span> 
+      <span class="label" style="font-family: 'Junegull', sans-serif;">GAME</span>
     </button>
     <button class="btn" data-page="leader">
       <img src="https://img.icons8.com/?size=100&id=u45Y3tfD2u4y&format=png&color=000000" alt="Wallet">
-      <span class="label" style="font-family: 'Junegull', sans-serif;">LEADER</span> 
+      <span class="label" style="font-family: 'Junegull', sans-serif;">LEADER</span>
     </button>
-    <button class="btn" data-page="glite"> 
-      <img src="https://img.icons8.com/?size=100&id=Dkks1lo1Lyf0&format=png&color=000000" alt="Settings"> 
-      <span class="label" style="font-family: 'Junegull', sans-serif;">GLITER</span> 
+    <button class="btn" data-page="glite">
+      <img src="https://img.icons8.com/?size=100&id=Dkks1lo1Lyf0&format=png&color=000000" alt="Settings">
+      <span class="label" style="font-family: 'Junegull', sans-serif;">GLITER</span>
     </button>
-  </div> 
+  </div>
 
   <style>
     @font-face {
       font-family: 'Junegull';
-      src: url('Junegull.ttf') format('truetype'); /* Замените 'Junegull.ttf' на имя вашего файла шрифта */
+      src: url('Junegull.ttf') format('truetype');
+     
     }
   </style>
 
-
-
   <script>
-    // JavaScript для изменения переменной catsCount
+  
     let catsCount = 2000;
-    document.getElementById("catsCount").textContent = catsCount; 
+    document.getElementById("catsCount").textContent = catsCount;
 
-    let showMoreButton = document.querySelector('.show-more a'); // Получаем ссылку
-    let tasksHidden = document.querySelectorAll('.task-hidden'); // Получаем скрытые задачи
+    let showMoreButton = document.querySelector('.show-more a'); 
+    let tasksHidden = document.querySelectorAll('.task-hidden'); 
 
     function showMoreTasks() {
       tasksHidden.forEach(task => {
         task.classList.remove('task-hidden');
-        task.style.display = 'block'; // Показывать скрытые задачи
+        task.style.display = 'block'; 
       });
       showMoreButton.textContent = "Show less tasks";
-      showMoreButton.removeEventListener('click', showMoreTasks); // Убираем обработчик события для "Show more tasks"
-      showMoreButton.addEventListener('click', hideTasks); // Добавляем обработчик события для "Show less tasks"
+      showMoreButton.removeEventListener('click', showMoreTasks); 
+      showMoreButton.addEventListener('click', hideTasks); 
     }
 
     function hideTasks() {
@@ -375,21 +428,21 @@
         task.style.display = 'none'; // Скрыть задачи
       });
       showMoreButton.textContent = "Show more tasks";
-      showMoreButton.removeEventListener('click', hideTasks); // Убираем обработчик события для "Show less tasks"
-      showMoreButton.addEventListener('click', showMoreTasks); // Добавляем обработчик события для "Show more tasks"
+      showMoreButton.removeEventListener('click', hideTasks); 
+      showMoreButton.addEventListener('click', showMoreTasks); 
     }
 
-    // Обработка нажатия на кнопки в панели задач
+   
     const taskbarButtons = document.querySelectorAll('.taskbar .btn');
     taskbarButtons.forEach(button => {
       button.addEventListener('click', () => {
-        // Сбрасываем активные страницы
+       
         const pages = document.querySelectorAll('.page-home, .page-game, .page-leader, .page-glite');
         pages.forEach(page => page.classList.remove('active'));
 
-        // Активируем выбранную страницу
+        
         const pageToActivate = button.dataset.page;
-        if (pageToActivate) { // Проверяем, есть ли атрибут data-page
+        if (pageToActivate) { 
           document.querySelector(`.page-${pageToActivate}`).classList.add('active');
         }
       });
@@ -400,5 +453,7 @@
     }
   </script>
 </body>
+
 </html>
+
 
