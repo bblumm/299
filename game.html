@@ -8,7 +8,10 @@
       overflow: hidden;
       background-color: #f0f0f0;
       font-family: 'Junegull', sans-serif;
-      background-image: none; 
+      background-image: url('game3.jpeg'); /* Добавлено фоновое изображение */
+      background-size: cover; /* Изменено, чтобы изображение покрывало весь фон */
+      background-repeat: no-repeat; /* Отключено повторение изображения */
+      cursor: none; /* Скрытие курсора */
     }
 
     @font-face {
@@ -23,7 +26,7 @@
       opacity: 0;
       transition: opacity 0.5s ease, top 3s ease;
       top: -100px;
-      cursor: pointer;
+      /* Удалено: cursor: pointer; */
     }
 
     .b {
@@ -61,7 +64,7 @@
     /* Стили для кнопки "Назад" */
     .back-button {
       position: fixed;
-      bottom: 10px; /* Изменено: bottom вместо top */
+      bottom: 10px; 
       left: 10px;
       z-index: 100;
       background-color: #fff;
@@ -152,7 +155,7 @@
   // Обработчик клика на кнопку "Назад"
   const backButton = document.querySelector('.back-button');
   backButton.addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = 'все вместе.html';
   });
 </script>
 
