@@ -3,15 +3,15 @@
 <head>
   <title>Falling B's and Pandalogos</title>
   <style>
-    body {
+   body {
       margin: 0;
       overflow: hidden;
-      background-color: #f0f0f0;
+      background-color: #ffffff;
       font-family: 'Junegull', sans-serif;
-      background-image: url('game3.jpeg'); /* Добавлено фоновое изображение */
-      background-size: cover; /* Изменено, чтобы изображение покрывало весь фон */
-      background-repeat: no-repeat; /* Отключено повторение изображения */
-      cursor: none; /* Скрытие курсора */
+      background-image: url('poo.png'); /* Заменил на poo.png */
+      background-size: cover;
+      background-repeat: no-repeat;
+      cursor: none;
     }
 
     @font-face {
@@ -21,12 +21,11 @@
 
     .b, .pandalogo {
       position: absolute;
-      width: 100px;
-      height: 100px;
+      width: 50px;
+      height: 50px;
       opacity: 0;
       transition: opacity 0.5s ease, top 3s ease;
       top: -100px;
-      /* Удалено: cursor: pointer; */
     }
 
     .b {
@@ -54,111 +53,177 @@
       height: 0px;
     }
 
-    .counter {
+    .timer-panel {
       position: fixed;
       top: 10px;
-      left: 10px;
+      left: 10px; /* Таймер теперь слева */
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 10px;
+      z-index: 100;
       font-size: 24px;
+      display: flex; /* Используем flexbox для выравнивания */
+      align-items: center; /* Выравнивание по вертикали */
     }
 
-    /* Стили для кнопки "Назад" */
-    .back-button {
+    .timer-panel button {
+      /* Убираем фон и рамку */
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer; /* Устанавливаем курсор указателя */
+      color: #000000; /*  */
+    }
+
+    .timer-panel button:focus {
+      /* Убираем контур при фокусе */
+      outline: none;
+    }
+
+    /* Добавляем стили для контраста текста на кнопке */
+    .timer-panel button:hover {
+      color: #000000; /* Черный цвет для контраста */
+    }
+
+
+    .score-panel {
       position: fixed;
-      bottom: 10px; 
-      left: 10px;
-      z-index: 100;
+      top: 10px;
+      right: 10px; /* Счетчик теперь справа */
       background-color: #fff;
       padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
+      border-radius: 10px;
+      z-index: 100;
+      font-size: 24px;
+      display: flex; /* Используем flexbox для выравнивания */
+      align-items: center; /* Выравнивание по вертикали */
     }
 
+    .timer-panel span, .score-panel span {
+      margin-right: 10px;
+    }
+
+    .score-container {
+      display: flex;
+      align-items: center; /* Выравнивание по вертикали */
+    }
+
+    .score-container img {
+      width: 45px; /* Увеличили ширину в 1.5 раза */
+      height: 45px; /* Увеличили высоту в 1.5 раза */
+      margin-right: 10px;
+    }
+
+    
+
     .back-button img {
-      width: 30px;
+        width: 50px;
       height: 30px;
     }
   </style>
 </head>
 <body>
 
-<div class="counter">Счетчик: 0</div>
+  <div class="timer-panel">
+    <span></span> <span id="timer">30</span>
+  </div>
 
-<div class="back-button">
-  <img src="b.png" alt="Назад"> 
-</div>
+  <div class="score-panel">
+    <div class="score-container">
+      <span></span> <span id="counter">0</span>
+      <img src="qaw.png" alt="Счетчик">
+    </div>
+  </div>
 
-<link rel="stylesheet" href="junegull.css">
+  <link rel="stylesheet" href="junegull.css">
 
-<script>
-  const container = document.body;
-  const bImage = 'b.png';
-  const pandalogoImage = 'pandalogo.png';
-  let counter = 0;
-  const counterElement = document.querySelector('.counter');
+  <script>
+    const container = document.body;
+    const bImage = 'b.png';
+    const pandalogoImage = 'pandalogo.png';
+    let counter = 0;
+    const counterElement = document.getElementById('counter');
+    let timer = 30;
+    const timerElement = document.getElementById('timer');
 
-  function createB() {
-    const b = document.createElement('div');
-    b.classList.add('b');
-    b.style.left = Math.random() * 100 + '%'; 
-    container.appendChild(b);
-
-    setTimeout(() => {
-      b.classList.add('visible');
-    }, 100);
-
-    setTimeout(() => {
-      container.removeChild(b);
-    }, 5000);
-
-    b.addEventListener('click', () => {
-      counter++;
-      counterElement.textContent = 'Счетчик: ' + counter; 
-
-      // Добавляем класс "disappear" для анимации
-      b.classList.add('disappear');
-
-      // Создаем новый Audio-элемент для воспроизведения звука
-      const audio = new Audio('hrum.mp3'); 
-      audio.play(); 
+    function createB() {
+      const b = document.createElement('div');
+      b.classList.add('b');
+      b.style.left = Math.random() * 100 + '%'; 
+      container.appendChild(b);
 
       setTimeout(() => {
-        container.removeChild(b); 
-      }, 500); 
-    });
-  }
+        b.classList.add('visible');
+      }, 100);
+      setTimeout(() => {
+        container.removeChild(b);
+      }, 5000);
 
-  function createPandalogo() {
-    const pandalogo = document.createElement('div');
-    pandalogo.classList.add('pandalogo');
-    pandalogo.style.left = Math.random() * 100 + '%'; 
-    container.appendChild(pandalogo);
+      b.addEventListener('click', () => {
+        counter++;
+        counterElement.textContent = counter; 
 
-    setTimeout(() => {
-      pandalogo.classList.add('visible');
-    }, 100);
+        // Добавляем класс "disappear" для анимации
+        b.classList.add('disappear');
 
-    setTimeout(() => {
-      container.removeChild(pandalogo);
-    }, 5000);
+        // Создаем новый Audio-элемент для воспроизведения звука
+        const audio = new Audio('hrum.mp3'); 
+        audio.play(); 
 
-    pandalogo.addEventListener('click', () => {
-      pandalogo.classList.add('disappear');
+        setTimeout(() => {
+          container.removeChild(b); 
+        }, 500); 
+      });
+    }
+
+    function createPandalogo() {
+      const pandalogo = document.createElement('div');
+      pandalogo.classList.add('pandalogo');
+      pandalogo.style.left = Math.random() * 100 + '%'; 
+      container.appendChild(pandalogo);
+
+      setTimeout(() => {
+        pandalogo.classList.add('visible');
+      }, 100);
+
       setTimeout(() => {
         container.removeChild(pandalogo);
-      }, 500);
+      }, 5000);
+
+      pandalogo.addEventListener('click', () => {
+        pandalogo.classList.add('disappear');
+        setTimeout(() => {
+          container.removeChild(pandalogo);
+        }, 500);
+      });
+    }
+
+    setInterval(createB, 500);
+    setInterval(createPandalogo, 5000);
+
+    // Обработчик таймера
+    const timerInterval = setInterval(() => {
+      timer--;
+      if (timer < 10) {
+        timerElement.textContent = `0:0${timer}`; // Добавляем 0 перед однозначными числами
+      } else {
+        timerElement.textContent = `0:${timer}`;
+      }
+
+      if (timer === 0) {
+        clearInterval(timerInterval);
+        alert('Время вышло!');
+      }
+    }, 1000);
+
+    // Обработчик клика на кнопку "Назад"
+    const backButton = document.querySelector('.back-button');
+    backButton.addEventListener('click', () => {
+      window.location.href = 'все вместе.html';
     });
-  }
+  </script>
 
-  setInterval(createB, 500);
-  setInterval(createPandalogo, 5000);
 
-  // Обработчик клика на кнопку "Назад"
-  const backButton = document.querySelector('.back-button');
-  backButton.addEventListener('click', () => {
-    window.location.href = 'все вместе.html';
-  });
-</script>
 
 </body>
 </html>
-
